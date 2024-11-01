@@ -24,7 +24,7 @@ Moedas selecionadas:
 - Dólar Canadense (CAD).
 
 ### Histórico
-Como extra, foi colocado um metodo para que as conversões realizadas sejam salvas em um arquivo ".json".
+Como extra, foi colocado um metodo para que as conversões realizadas fossem salvas em um arquivo ".json".
 
 <!--colocar imagem do arquivo com o histórico-->
 
