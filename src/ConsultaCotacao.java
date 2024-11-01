@@ -8,15 +8,11 @@ import java.net.http.HttpResponse;
 
 public class ConsultaCotacao {
 
-    private String chaveAPI = "d0037b4468514b27f8d2dbb2";
+    // Variavel chaveAPI foi colocada separadamente para que futuras pessoas que forem visualizar este código, vejam claramente onde podem inserir suas proprias chaves APIs.
+    private final String chaveAPI = "d0037b4468514b27f8d2dbb2";
     private String codigoMoedaOrigem;
     private String codigoMoedaDestino;
     private double taxaDeCambio;
-
-
-    public double getTaxaDeCambio() {
-        return taxaDeCambio;
-    }
 
     public void setCodigoMoedaOrigem(String codigoMoedaOrigem) {
         this.codigoMoedaOrigem = codigoMoedaOrigem;
@@ -26,17 +22,9 @@ public class ConsultaCotacao {
         this.codigoMoedaDestino = codigoMoedaDestino;
     }
 
-    public String getCodigoMoedaOrigem() {
-        return codigoMoedaOrigem;
-    }
-
-    public String getCodigoMoedaDestino() {
-        return codigoMoedaDestino;
-    }
-
     public double calcularTaxaDeCambio (String codigoMoedaInicial, String codigoMoedaFinal) {
         String url = "https://v6.exchangerate-api.com/v6/" + chaveAPI + "/pair/" + codigoMoedaOrigem + "/" + codigoMoedaDestino;
-        JsonObject jsonResponse = null;
+        JsonObject jsonResponse;
         try {
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
