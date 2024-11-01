@@ -5,12 +5,12 @@
 ## Sobre
 
 Este desafio foi proposto como finalização da trilha **"Java e Orientação a Objetos G7 - ONE (Oracle Next Education)"** destinada aos alunos da especialização em back-end do programa ONE, desenvolvido pela **Alura** em parceria com a **Oracle**. </br>
-O projeto visa aplicar todos os conteúdos aprendidos durantes os cursos da trilha em questão, fazendo o uso da Orientação a Objetos e o consumo de uma API para obtenção dos dados de maneira dinnâmica.</br>
+O projeto visa aplicar todos os conteúdos aprendidos durantes os cursos da trilha em questão, fazendo o uso da Orientação a Objetos e o consumo de uma API para obtenção e tratamento dos dados de maneira dinâmica.</br>
 
 ## Funcionalidades
 
 ### Conversão
-Com o uso de uma API (Exchange Rate API), 
+Com o uso de uma API (Exchange Rate API), foi feita a obtenção das taxas de câmbio, para que assim seja realizada a conversão atualizada e dinâmica das moedas selecionadas durante o uso do programa.
 
 ### Moedas
 Foram solicitadas ao menos 6 moedas distintas para a conversão dos valores no projeto.</br>
