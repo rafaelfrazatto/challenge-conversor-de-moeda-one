@@ -1,3 +1,10 @@
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ConversorDeMoedas {
@@ -6,6 +13,7 @@ public class ConversorDeMoedas {
     private double taxaDeCambio;
     private final Scanner leitura;
     private final ConsultaCotacao consulta;
+    private final List<Conversao> historicoConversoes;
 
     public ConversorDeMoedas() {
         leitura = new Scanner(System.in);
@@ -13,6 +21,7 @@ public class ConversorDeMoedas {
         moedaOrigem = "";
         moedaDestino = "";
         taxaDeCambio = 0;
+        historicoConversoes = new ArrayList<>();
     }
 
     public void iniciar() {
@@ -63,8 +72,8 @@ public class ConversorDeMoedas {
                 ****************************************
                       SELECIONE A MOEDA DE ORIGEM
                 ****************************************
-                1 - Real brasileiro (BRL).
-                2 - Dólar (USD).
+                1 - Real Brasileiro (BRL).
+                2 - Dólar Americano (USD).
                 3 - Euro (EUR).
                 4 - Peso Argentino (ARS).
                 5 - Libra Esterlina (GBP).
@@ -91,7 +100,7 @@ public class ConversorDeMoedas {
                       SELECIONE A MOEDA DE DESTINO
                 ****************************************
                 1 - Real brasileiro (BRL).
-                2 - Dólar (USD).
+                2 - Dólar Americano (USD).
                 3 - Euro (EUR).
                 4 - Peso Argentino (ARS).
                 5 - Libra Esterlina (GBP).
@@ -108,8 +117,19 @@ public class ConversorDeMoedas {
             case 6: moedaDestino = "CAD"; break;
             default: System.out.println("Opção inválida. Tente novamente.");
         }
-        consulta.setCodigoMoedaDestino(moedaDestino); // Atualizando a moeda de destino na consulta
+        consulta.setCodigoMoedaDestino(moedaDestino);
         System.out.println("Sua moeda de destino selecionada é: " + moedaDestino);
+    }
+
+    private void salvarConversao(Conversao conversao) {
+        historicoConversoes.add(conversao);
+
+        try (FileWriter writer = new FileWriter("historico_conversoes.json")) {
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            gson.toJson(historicoConversoes, writer);
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar conversões: " + e.getMessage());
+        }
     }
 
     private void realizarConversao() {
@@ -123,5 +143,8 @@ public class ConversorDeMoedas {
 
         double valorResultado = valorParaConversao * taxaDeCambio;
         System.out.println("Valor convertido: " + valorResultado + " " + moedaDestino + ".");
+
+        Conversao conversao = new Conversao(moedaOrigem, moedaDestino, valorParaConversao, valorResultado, taxaDeCambio);
+        salvarConversao(conversao);
     }
 }
