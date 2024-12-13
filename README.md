@@ -48,4 +48,6 @@ Como extra, foi colocado um metodo para que as conversões realizadas fossem sal
 
 ## Badge de Conclusão
 
+<img src="./Badge-Conversor.png" alt="Badge de conclusão do challenge." width=500px style="margin-right: 25px; margin-left: 25px;">
+
 <!--colocar imagem da badge de conclusão-->
